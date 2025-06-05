@@ -5,33 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class TodoController extends Controller
+class TodoCeoController extends Controller
 {
-    // public function tampilTugas() {
-    //     $dataTodo = DB::table('tb_todo')->join('tb_pegawai', 'tb_todo.tugas_dari', '=', 'tb_pegawai.id')
-    //     ->select(
-    //         'tb_pegawai.id',
-    //         'tb_todo.id',
-    //         'tb_todo.tugas',
-    //         'tb_todo.waktu_mulai',
-    //         'tb_todo.waktu_selesai',
-    //         'tb_pegawai.nama as tugas_dari',
-    //         'tb_todo.tugas_untuk',
-    //         'tb_todo.keterangan'
-    //     )
-    //     ->get();
-
-    //     return view('pengguna.index', [
-    //         'dataTodo' => $dataTodo
-    //     ]);
-    // }
-
     public function detailTugas($id) {
-        // $tugas = DB::table( 'tb_todo' )
-        // ->where( 'id', $id )
-        // // ->first()
-        // ->get();
-
         $tugas = DB::table('tb_todo')
                     ->join('tb_pegawai as pengirim', 'tb_todo.tugas_dari', '=', 'pengirim.id')
                     ->join('tb_pegawai as penerima', 'tb_todo.tugas_untuk', '=', 'penerima.id')
@@ -46,7 +22,7 @@ class TodoController extends Controller
                     )
                     ->first();
 
-        return view( 'pengguna.detailTugas', [
+        return view( 'ceo.detail-tugas', [
             'detailTodo' => $tugas
         ]);
     }
@@ -58,9 +34,21 @@ class TodoController extends Controller
         ->delete();
 
         $dataTodo = DB::table('tb_todo') // Mengambil data untuk dikirim ke view index
-        ->get();
+            ->join('tb_pegawai as pemberi', 'tb_todo.tugas_dari', '=', 'pemberi.id')
+            ->join('tb_pegawai as penerima', 'tb_todo.tugas_untuk', '=', 'penerima.id')
+            ->select(
+                'pemberi.id as id_pegawai',
+                'tb_todo.id as id_todo',
+                'tb_todo.tugas',
+                'tb_todo.waktu_mulai',
+                'tb_todo.waktu_selesai',
+                'pemberi.nama as tugas_dari',
+                'penerima.nama as tugas_untuk',
+                'tb_todo.keterangan'
+            )
+            ->get();
 
-        return view('pengguna.index', [
+        return view('ceo.index', [
             'dataTodo' => $dataTodo
         ]);
     }
@@ -73,7 +61,7 @@ class TodoController extends Controller
         $pelaksanaTugass = DB::table('tb_pegawai')
                         ->where('jabatan','=', 'pelaksana')
                         ->get();
-        return view('pengguna.tambahTugas', [
+        return view('ceo.tambah-tugas', [
             'pemberiTugass' => $pemberiTugass,
             'pelaksanaTugass' => $pelaksanaTugass
         ]);
@@ -81,46 +69,25 @@ class TodoController extends Controller
 
     // method untuk simpan tugas
     public function simpanTugas(Request $request) {
-        DB::table('tb_todo') //simpan dalam database
-        ->insert([
-            'tugas' => $request->tugas,
-            'waktu_mulai' => $request->waktu_mulai,
-            'waktu_selesai' => $request->waktu_selesai,
-            'tugas_dari'=> $request->tugas_dari,
-            'tugas_untuk'=> $request->tugas_untuk,
-            'keterangan' => $request->keterangan 
-        ]);
+        DB::table('tb_todo')
+            ->insert([
+                'tugas' => $request->tugas,
+                'waktu_mulai' => $request->waktu_mulai,
+                'waktu_selesai' => $request->waktu_selesai,
+                'tugas_dari'=> $request->tugas_dari,
+                'tugas_untuk'=> $request->tugas_untuk,
+                'keterangan' => $request->keterangan 
+            ]);
 
-        return view( 'pengguna.index', [
-            'dataTodo' => DB::table('tb_todo')->join('tb_pegawai', 'tb_todo.tugas_dari', '=', 'tb_pegawai.id')
-            ->select(
-                'tb_pegawai.id',
-                'tb_todo.id',
-                'tb_todo.tugas',
-                'tb_todo.waktu_mulai',
-                'tb_todo.waktu_selesai',
-                'tb_pegawai.nama as tugas_dari',
-                'tb_todo.tugas_untuk',
-                'tb_todo.keterangan'
-            )
-            ->get()
-        ]);
+        // Redirect ke halaman index ceo setelah simpan
+        return redirect('/ceo/index');
     }
 
     public function ubahTugas(Request $request, $id) {
         $dataTodo = DB::table('tb_todo')
                     ->where('id','=', $id)
                     ->first();
-        // DB::table('tb_todo')
-        // ->where('id','=', $id)
-        // ->update([
-        //     'tugas' => $request->tugas,
-        //     'waktu_mulai' => $request->waktu_mulai,
-        //     'waktu_selesai' => $request->waktu_selesai,
-        //     'tugas_dari'=> $request->tugas_dari,
-        //     'tugas_untuk'=> $request->tugas_untuk,
-        //     'keterangan' => $request->keterangan 
-        // ]);
+        
         $pemberiTugass = DB::table('tb_pegawai')
                         ->where('jabatan','=', 'ceo')
                         ->orWhere('jabatan','=', 'admin')
@@ -129,7 +96,7 @@ class TodoController extends Controller
                         ->where('jabatan','=', 'pelaksana')
                         ->get();
         
-        return view('pengguna.ubahTugas', [
+        return view('ceo.ubah-tugas', [
             'pemberiTugass' => $pemberiTugass,
             'pelaksanaTugass' => $pelaksanaTugass,
             'dataTodo' => $dataTodo
@@ -148,6 +115,6 @@ class TodoController extends Controller
             'keterangan' => $request->keterangan 
         ]);
 
-        return redirect('/pengguna/index');
+        return redirect('/ceo/index');
     }
 }

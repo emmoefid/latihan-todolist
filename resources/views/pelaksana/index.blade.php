@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +12,6 @@
             <h2>Daftar Tugas</h2>
         </caption>
         <br>
-        <a href="/tugas/tambahTugas">Tambah Tugas</a>
         <thead>
             <tr>
                 <td>Id Pegawai</td>
@@ -32,18 +31,16 @@
         <tbody>
             @foreach ($dataTodo as $todo)
             <tr>
-                <td>{{ $todo->id }}</td>
-                <td>{{ $todo->id }}</td>
-                <td>{{ $todo->tugas}}</td>
-                <td>{{ $todo->waktu_mulai}}</td>
-                <td>{{ $todo->waktu_selesai}}</td>
+                <td>{{ $todo->id_pegawai }}</td>
+                <td>{{ $todo->id_todo }}</td>
+                <td>{{ $todo->tugas }}</td>
+                <td>{{ $todo->waktu_mulai }}</td>
+                <td>{{ $todo->waktu_selesai }}</td>
                 <td>{{ $todo->tugas_dari }}</td>
                 <td>{{ $todo->tugas_untuk }}</td>
                 <td>{{ $todo->keterangan }}</td>
                 <td>
-                <a href="/tugas/detailTugas/{{ $todo->id }}">Detail Tugas</a> | 
-                <a href="/tugas/hapusTugas/{{ $todo->id }}">Hapus</a> |
-                <a href="/tugas/ubahTugas/{{ $todo->id }}">Ubah Tugas</a>
+                    <a href="/pelaksana/detail-tugas/{{ $todo->id_todo }}">Detail Tugas</a> 
                 </td>
             </tr>
             @endforeach

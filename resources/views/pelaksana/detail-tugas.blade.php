@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,6 +31,9 @@
         <tr>
             <td>Keterangan :</td>
             <td>{{ $detailTodo->keterangan }}</td>
+        </tr>
+        <tr>
+            <h3><a href="/pelaksana/index">Kembali ke halaman pelaksana</a></h3>
         </tr>
     </table>
 </body>

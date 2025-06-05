@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Tugas</title>
+    <title>Ubah Tugas</title>
 </head>
 <body>
     <center>
-        <h1>Tambah Tugas</h1>
-        <a href="/pengguna/index">Kembali</a>
-    <form action="/tugas/tambahTugasBaru" method="post">
+        <h1>Ubah Tugas</h1>
+        <h3><a href="/ceo/index">Kembali ke halaman Ceo</a></h3>
+    <form action="/ceo/simpan-ubah-tugas/{{ $dataTodo->id }}" method="post">
         @csrf
         <table>
             <tr>
                 <td>Nama Tugas :</td>
-                <td><input type="text" name="tugas"></td>
+                <td><input type="text" name="tugas" value="{{ $dataTodo->tugas }}"></td>
             </tr>
             <tr>
                 <td>Waktu Mulai :</td>
-                <td><input type="date" name="waktu_mulai"></td>
+                <td><input type="date" name="waktu_mulai" value="{{ \Carbon\Carbon::parse($dataTodo->waktu_mulai)->format('Y-m-d') }}"></td>
             </tr>
             <tr>
                 <td>Waktu Selesai :</td>
-                <td><input type="date" name="waktu_selesai"></td>
+                <td><input type="date" name="waktu_selesai" value="{{ \Carbon\Carbon::parse($dataTodo->waktu_selesai)->format('Y-m-d') }}"></td>
             </tr>
             <tr>
                 <td>Tugas Dari :</td>
@@ -46,12 +46,12 @@
             </tr>
             <tr>
                 <td>Keterangan :</td>
-                <td><input type="text" name="keterangan"></td>
+                <td><input type="text" name="keterangan" value="{{ $dataTodo->keterangan }}"></td>
             </tr>
             <tr>
-            <td></td>
-            <td><input type="submit" value="Simpan"></td>
-        </tr>
+                <td></td>
+                <td><input type="submit" value="Simpan"></td>
+            </tr>
         </table>
     </form>
 </body>

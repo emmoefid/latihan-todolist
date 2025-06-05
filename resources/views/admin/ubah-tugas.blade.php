@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +8,8 @@
 <body>
     <center>
         <h1>Ubah Tugas</h1>
-        <a href="/pengguna/index">Kembali</a>
-    <form action="/tugas/simpanUbahTugas/{{ $dataTodo->id }}" method="post">
+        <h3><a href="/admin/index">Kembali ke halaman admin</a></h3>
+    <form action="/admin/simpan-ubah-tugas/{{ $dataTodo->id }}" method="post">
         @csrf
         <table>
             <tr>

@@ -12,7 +12,7 @@
             <h2>Daftar Tugas</h2>
         </caption>
         <br>
-        <a href="/admin/tambah-tugas">Tambah Tugas</a>
+        <a href="/ceo/tambah-tugas">Tambah Tugas</a>
         <thead>
             <tr>
                 <td>Id Pegawai</td>
@@ -41,9 +41,9 @@
                 <td>{{ $todo->tugas_untuk }}</td>
                 <td>{{ $todo->keterangan }}</td>
                 <td>
-                    <a href="/admin/detail-tugas/{{ $todo->id_todo }}">Detail Tugas</a> | 
-                    <a href="/admin/hapus-tugas/{{ $todo->id_todo }}">Hapus</a> |
-                    <a href="/admin/ubah-tugas/{{ $todo->id_todo }}">Ubah Tugas</a>
+                    <a href="/ceo/detail-tugas/{{ $todo->id_todo }}">Detail Tugas</a> | 
+                    <a href="/ceo/hapus-tugas/{{ $todo->id_todo }}">Hapus</a> |
+                    <a href="/ceo/ubah-tugas/{{ $todo->id_todo }}">Ubah Tugas</a>
                 </td>
             </tr>
             @endforeach
