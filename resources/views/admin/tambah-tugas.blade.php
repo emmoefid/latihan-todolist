@@ -8,7 +8,7 @@
 <body>
     <center>
         <h1>Tambah Tugas</h1>
-        <h3><a href="/admin/index">Kembali ke halaman Admin</a></h3>
+        <h3><a href="/admin/halaman-admin">Kembali ke halaman Admin</a></h3>
     <form action="/admin/tambah-tugas-baru" method="post">
         @csrf
         <table>

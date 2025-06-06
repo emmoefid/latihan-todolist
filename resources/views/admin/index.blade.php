@@ -23,6 +23,7 @@
                 <td>Tugas Dari</td>
                 <td>Tugas Untuk</td>
                 <td>Keterangan</td>
+                <td>Status</td>
                 <td><center>Aksi</center></td>
             </tr>
             @php
@@ -40,6 +41,7 @@
                 <td>{{ $todo->tugas_dari }}</td>
                 <td>{{ $todo->tugas_untuk }}</td>
                 <td>{{ $todo->keterangan }}</td>
+                <td>{{ $todo->status }}</td>
                 <td>
                     <a href="/admin/detail-tugas/{{ $todo->id_todo }}">Detail Tugas</a> | 
                     <a href="/admin/hapus-tugas/{{ $todo->id_todo }}">Hapus</a> |

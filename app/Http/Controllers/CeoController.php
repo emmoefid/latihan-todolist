@@ -19,7 +19,8 @@ class CeoController extends Controller
                 'tb_todo.waktu_selesai',
                 'pemberi.nama as tugas_dari',
                 'penerima.nama as tugas_untuk',
-                'tb_todo.keterangan'
+                'tb_todo.keterangan',
+                'tb_todo.status'
             )
             ->get();
         return view('ceo.index', [

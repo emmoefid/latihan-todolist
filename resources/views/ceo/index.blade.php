@@ -23,6 +23,7 @@
                 <td>Tugas Dari</td>
                 <td>Tugas Untuk</td>
                 <td>Keterangan</td>
+                <td>Status</td>
                 <td><center>Aksi</center></td>
             </tr>
             @php
@@ -40,9 +41,10 @@
                 <td>{{ $todo->tugas_dari }}</td>
                 <td>{{ $todo->tugas_untuk }}</td>
                 <td>{{ $todo->keterangan }}</td>
+                <td>{{ $todo->status }}</td>
                 <td>
                     <a href="/ceo/detail-tugas/{{ $todo->id_todo }}">Detail Tugas</a> | 
-                    <a href="/ceo/hapus-tugas/{{ $todo->id_todo }}">Hapus</a> |
+                    <a href="/ceo/hapus-tugas/{{ $todo->id_todo }}" onclick="return confirm('Apakah Anda yakin ingin menghapus tugas ini?')">Hapus</a> |
                     <a href="/ceo/ubah-tugas/{{ $todo->id_todo }}">Ubah Tugas</a>
                 </td>
             </tr>

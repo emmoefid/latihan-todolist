@@ -33,7 +33,11 @@
             <td>{{ $detailTodo->keterangan }}</td>
         </tr>
         <tr>
-            <h3><a href="/pelaksana/index">Kembali ke halaman pelaksana</a></h3>
+            <td>Status :</td>
+            <td>{{ $detailTodo->status }}</td>
+        </tr>
+        <tr>
+            <h3><a href="/pelaksana/halaman-pelaksana">Kembali ke halaman pelaksana</a></h3>
         </tr>
     </table>
 </body>

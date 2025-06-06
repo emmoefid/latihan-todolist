@@ -23,27 +23,17 @@ Route::get('/ceo', function () {
 }); */ 
 
 // Route awal membuka web
-Route::get('/', function () {
-    return view('welcome1');
-});
+// Route::get('/', function () {
+//     return view('welcome1');
+// });
 
-// PENGGGUNA
+// PELAKSANA
 //proses login
 Route::get('/pelaksana/halaman-pelaksana', [PelaksanaController::class, 'prosesLogin']);
 // menampilkan detail todo
 Route::get('/pelaksana/detail-tugas/{id}', [TodoPelaksanaController::class, 'detailTugas']);
-// menghapus data (tugas)
-Route::get('/tugas/hapusTugas/{id}', [TodoPelaksanaController::class, 'hapusTugas']);
-// menampilkan menambah tugas
-Route::get('/tugas/tambahTugas', [TodoPelaksanaController::class, 'tambahTugas']);
-// simpan ke database.
-Route::post('/tugas/tambahTugasBaru', [TodoPelaksanaController::class, 'simpanTugas']);
-// kembali ke halaman utama
-Route::get('pengguna/index', [PelaksanaController::class, 'prosesLogin']);
-// mengubah todo
-Route::get('/tugas/ubahTugas/{id}', [TodoPelaksanaController::class, 'ubahTugas']);
-// menyimpan perubahan pada tugas
-Route::post('/tugas/simpanUbahTugas/{id}', [TodoPelaksanaController::class, 'simpanUbahTugas']);
+// ubah status tugas
+Route::post('/pelaksana/ubah-status/{id}', [TodoPelaksanaController::class, 'ubahStatus']);
 
 
 // ADMIN
@@ -53,8 +43,6 @@ Route::get('/admin/halaman-admin', [AdminController::class, 'prosesLogin']);
 Route::get('/admin/tambah-tugas', [TodoAdminController::class, 'tambahTugas']);
 // simpan tugas baru
 Route::post('/admin/tambah-tugas-baru', [TodoAdminController::class, 'simpanTugas']);
-// kembali ke halaman admin
-Route::get('/admin/index', [AdminController::class, 'prosesLogin']);
 // detail tugas
 Route::get('/admin/detail-tugas/{id}', [TodoAdminController::class, 'detailTugas']);
 // hapus tugas

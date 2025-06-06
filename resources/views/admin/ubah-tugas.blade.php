@@ -44,9 +44,20 @@
                 </select>
                 </td>
             </tr>
+            
             <tr>
                 <td>Keterangan :</td>
                 <td><input type="text" name="keterangan" value="{{ $dataTodo->keterangan }}"></td>
+            </tr>
+            <tr>
+                <td>Status :</td>
+                <td>
+                    <select name="status">
+                        <option value="belum dikerjakan" {{ isset($dataTodo->status) && $dataTodo->status == 'belum dikerjakan' ? 'selected' : '' }}>Belum Dikerjakan</option>
+                        <option value="dikerjakan" {{ isset($dataTodo->status) && $dataTodo->status == 'dikerjakan' ? 'selected' : '' }}>Dikerjakan</option>
+                        <option value="ditolak" {{ isset($dataTodo->status) && $dataTodo->status == 'ditolak' ? 'selected' : '' }}>Ditolak</option>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td></td>

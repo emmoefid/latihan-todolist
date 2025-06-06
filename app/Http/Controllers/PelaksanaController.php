@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Todo;
 
 class PelaksanaController extends Controller
 {
@@ -19,7 +20,8 @@ class PelaksanaController extends Controller
                 'tb_todo.waktu_selesai',
                 'pemberi.nama as tugas_dari',
                 'penerima.nama as tugas_untuk',
-                'tb_todo.keterangan'
+                'tb_todo.keterangan',
+                'tb_todo.status'
             )
             ->get();
         return view('pelaksana.index', [

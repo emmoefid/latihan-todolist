@@ -7,6 +7,7 @@
 </head>
 <body>
     <h1>Informasi Penugasan</h1>
+    <h3><a href="/admin/halaman-admin">Kembali ke daftar tugas</a></h3>
     <table>
         <tr>
             <td>Tugas :</td>
@@ -31,6 +32,10 @@
         <tr>
             <td>Keterangan :</td>
             <td>{{ $detailTodo->keterangan }}</td>
+        </tr>
+        <tr>
+            <td>Status :</td>
+            <td>{{ $detailTodo->status }}</td>
         </tr>
     </table>
 </body>

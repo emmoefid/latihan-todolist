@@ -9,17 +9,19 @@ class TodoAdminController extends Controller
 {
     public function detailTugas($id) {
         $tugas = DB::table('tb_todo')
-                    ->join('tb_pegawai as pengirim', 'tb_todo.tugas_dari', '=', 'pengirim.id')
+                    ->join('tb_pegawai as pemberi', 'tb_todo.tugas_dari', '=', 'pemberi.id')
                     ->join('tb_pegawai as penerima', 'tb_todo.tugas_untuk', '=', 'penerima.id')
                     ->select(
                         'tb_todo.id',
                         'tb_todo.tugas',
                         'tb_todo.waktu_mulai',
                         'tb_todo.waktu_selesai',
-                        'pengirim.nama as tugas_dari',
+                        'pemberi.nama as tugas_dari',
                         'penerima.nama as tugas_untuk',
-                        'tb_todo.keterangan'
+                        'tb_todo.keterangan',
+                        'tb_todo.status'
                     )
+                    ->where('tb_todo.id', $id)
                     ->first();
 
         return view( 'admin.detail-tugas', [
@@ -44,7 +46,8 @@ class TodoAdminController extends Controller
                 'tb_todo.waktu_selesai',
                 'pemberi.nama as tugas_dari',
                 'penerima.nama as tugas_untuk',
-                'tb_todo.keterangan'
+                'tb_todo.keterangan',
+                'tb_todo.status'
             )
             ->get();
 
@@ -80,7 +83,7 @@ class TodoAdminController extends Controller
             ]);
 
         // Redirect ke halaman index admin setelah simpan
-        return redirect('/admin/index');
+        return redirect('/admin/halaman-admin');
     }
 
     public function ubahTugas(Request $request, $id) {
@@ -112,9 +115,10 @@ class TodoAdminController extends Controller
             'waktu_selesai' => $request->waktu_selesai,
             'tugas_dari'=> $request->tugas_dari,
             'tugas_untuk'=> $request->tugas_untuk,
-            'keterangan' => $request->keterangan 
+            'keterangan' => $request->keterangan,
+            'status' => $request->status
         ]);
 
-        return redirect('/admin/index');
+        return redirect('/admin/halaman-admin');
     }
 }

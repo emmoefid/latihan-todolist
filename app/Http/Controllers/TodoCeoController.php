@@ -4,22 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Todo;
 
 class TodoCeoController extends Controller
 {
     public function detailTugas($id) {
         $tugas = DB::table('tb_todo')
-                    ->join('tb_pegawai as pengirim', 'tb_todo.tugas_dari', '=', 'pengirim.id')
+                    ->join('tb_pegawai as pemberi', 'tb_todo.tugas_dari', '=', 'pemberi.id')
                     ->join('tb_pegawai as penerima', 'tb_todo.tugas_untuk', '=', 'penerima.id')
                     ->select(
                         'tb_todo.id',
                         'tb_todo.tugas',
                         'tb_todo.waktu_mulai',
                         'tb_todo.waktu_selesai',
-                        'pengirim.nama as tugas_dari',
+                        'pemberi.nama as tugas_dari',
                         'penerima.nama as tugas_untuk',
-                        'tb_todo.keterangan'
+                        'tb_todo.keterangan',
+                        'tb_todo.status'
                     )
+                    ->where('tb_todo.id', $id) // PENTING: filter by id!
                     ->first();
 
         return view( 'ceo.detail-tugas', [
@@ -44,7 +47,8 @@ class TodoCeoController extends Controller
                 'tb_todo.waktu_selesai',
                 'pemberi.nama as tugas_dari',
                 'penerima.nama as tugas_untuk',
-                'tb_todo.keterangan'
+                'tb_todo.keterangan',
+                'tb_todo.status'
             )
             ->get();
 
@@ -112,7 +116,8 @@ class TodoCeoController extends Controller
             'waktu_selesai' => $request->waktu_selesai,
             'tugas_dari'=> $request->tugas_dari,
             'tugas_untuk'=> $request->tugas_untuk,
-            'keterangan' => $request->keterangan 
+            'keterangan' => $request->keterangan,
+            'status' => $request->status
         ]);
 
         return redirect('/ceo/index');
