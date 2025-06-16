@@ -12,7 +12,11 @@
             <h2>Daftar Tugas</h2>
         </caption>
         <br>
-        <a href="/ceo/tambah-tugas">Tambah Tugas</a>
+        <a href="/ceo/tambah-tugas">Tambah Tugas | </a>
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit">Logout</button>
+        </form>
         <thead>
             <tr>
                 <td>Id Pegawai</td>

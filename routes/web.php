@@ -9,23 +9,10 @@ use App\Http\Controllers\TodoPelaksanaController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
-
+// route awal
 /* Route::get('/', function () {
     return view('welcome');
-});
-
-/* Route::get('/admin', function () {
-    return view('admin.dashboard');
-});
-
-Route::get('/ceo', function () {
-    return view('Ceo.dashboard');
-}); */ 
-
-// Route awal membuka web
-// Route::get('/', function () {
-//     return view('welcome1');
-// });
+}); */
 
 // PELAKSANA
 //proses login
@@ -51,6 +38,10 @@ Route::get('/admin/hapus-tugas/{id}', [TodoAdminController::class, 'hapusTugas']
 Route::get('/admin/ubah-tugas/{id}', [TodoAdminController::class, 'ubahTugas']);
 // simpan perubahan tugas
 Route::post('/admin/simpan-ubah-tugas/{id}', [TodoAdminController::class, 'simpanUbahTugas']);
+// tambah akun baru
+Route::get('/admin/tambah-akun', [AdminController::class, 'tambahAkun']);
+// simpan akun baru
+Route::post('/admin/simpan-akun-baru', [AdminController::class, 'simpanAkunBaru'])->name('simpan-akun-baru');
 
 // CEO
 // proses login ceo
@@ -73,7 +64,7 @@ Route::post('/ceo/simpan-ubah-tugas/{id}', [TodoCeoController::class, 'simpanUba
 // AUTHENTICATION
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 ?>

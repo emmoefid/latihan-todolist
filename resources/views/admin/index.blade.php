@@ -12,7 +12,12 @@
             <h2>Daftar Tugas</h2>
         </caption>
         <br>
-        <a href="/admin/tambah-tugas">Tambah Tugas</a>
+            <a href="/admin/tambah-tugas">Tambah Tugas | </a>
+            <a href="/admin/tambah-akun">Tambah Akun | </a>
+            <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit">Logout</button>
+            </form>
         <thead>
             <tr>
                 <td>Id Pegawai</td>
@@ -44,7 +49,7 @@
                 <td>{{ $todo->status }}</td>
                 <td>
                     <a href="/admin/detail-tugas/{{ $todo->id_todo }}">Detail Tugas</a> | 
-                    <a href="/admin/hapus-tugas/{{ $todo->id_todo }}">Hapus</a> |
+                    <a href="/admin/hapus-tugas/{{ $todo->id_todo }}" onclick="return confirm('Apakah Anda yakin ingin menghapus tugas ini?')">Hapus</a> |
                     <a href="/admin/ubah-tugas/{{ $todo->id_todo }}">Ubah Tugas</a>
                 </td>
             </tr>

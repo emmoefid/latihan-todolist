@@ -32,9 +32,9 @@ class AuthController extends Controller
 
             switch ($login->jabatan) {
                 case 'admin':
-                    return redirect('/admin/index');
+                    return redirect('/admin/halaman-admin');
                 case 'ceo':
-                    return redirect('/ceo/index');
+                    return redirect('/ceo/halaman-ceo');
                 case 'pelaksana':
                     return redirect('/pelaksana/halaman-pelaksana');
             }
