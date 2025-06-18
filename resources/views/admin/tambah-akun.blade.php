@@ -13,7 +13,7 @@
                 @csrf
                 <table>
                     <tr>
-                        <td><label for="nama">Nama:</label></td>
+                        <td><label for="nama">Username:</label></td>
                         <td><input type="text" id="nama" name="nama" required></td>
                     </tr>
                     <tr>

@@ -8,7 +8,9 @@ use App\Models\Todo;
 
 class PelaksanaController extends Controller
 {
-    public function prosesLogin() {
+    public function prosesLogin(Request $request) {
+        $id_pegawai = session('loginId');
+
         $todo = DB::table('tb_todo')
             ->join('tb_pegawai as pemberi', 'tb_todo.tugas_dari', '=', 'pemberi.id')
             ->join('tb_pegawai as penerima', 'tb_todo.tugas_untuk', '=', 'penerima.id')
@@ -23,7 +25,9 @@ class PelaksanaController extends Controller
                 'tb_todo.keterangan',
                 'tb_todo.status'
             )
+            ->where('penerima.id', $id_pegawai)
             ->get();
+
         return view('pelaksana.index', [
             'dataTodo' => $todo
         ]);
