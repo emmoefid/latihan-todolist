@@ -66,9 +66,9 @@
                                 </span>
                             </td>
                             <td class="px-4 py-2 text-center space-x-2">
-                                <a href="/admin/detail-tugas/{{ $todo->id_todo }}" class="text-blue-600 hover:underline">Detail</a>
-                                <a href="/admin/ubah-tugas/{{ $todo->id_todo }}" class="text-yellow-600 hover:underline">Ubah</a>
-                                <a href="/admin/hapus-tugas/{{ $todo->id_todo }}" onclick="return confirm('Apakah Anda yakin ingin menghapus tugas ini?')" class="text-red-600 hover:underline">Hapus</a>
+                                <a href="/ceo/detail-tugas/{{ $todo->id_todo }}" class="text-blue-600 hover:underline">Detail</a>
+                                <a href="/ceo/ubah-tugas/{{ $todo->id_todo }}" class="text-yellow-600 hover:underline">Ubah</a>
+                                <a href="/ceo/hapus-tugas/{{ $todo->id_todo }}" onclick="return confirm('Apakah Anda yakin ingin menghapus tugas ini?')" class="text-red-600 hover:underline">Hapus</a>
                             </td>
                         </tr>
                         @endforeach
