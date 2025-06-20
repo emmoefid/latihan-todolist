@@ -20,7 +20,6 @@
         <div class="flex space-x-4 mb-6">
             <a href="/admin/tambah-tugas" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Tambah Tugas</a>
             <a href="/admin/tambah-akun" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Tambah Akun</a>
-            <a href="/admin/tambah-pegawai" class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded">Tambah Pegawai</a>
         </div>
         <div class="bg-white shadow rounded-lg p-6">
             <h2 class="text-2xl font-semibold mb-4 text-gray-700">Daftar Tugas</h2>
